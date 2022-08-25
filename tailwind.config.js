@@ -1,18 +1,15 @@
-/** @type {import('tailwindcss').Config} */ 
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./src/**/*.{js,jsx,ts,tsx}",
-  ],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
-
-      colors :{
-
-      headerBlue : "#001e5d",
-      khaki : "#f6f1e7",
-      brandBrown : "#333333"
+      colors: {
+        headerBlue: "#001e5d",
+        khaki: "#f6f1e7",
+        brandBrown: "#333333",
+        textGrey: "#777777",
       },
     },
   },
   plugins: [],
-}
+};
