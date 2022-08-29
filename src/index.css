@@ -51,7 +51,7 @@ body {
   align-items: center;
   justify-content: center;
   transition: 0.5 all linear;
-  animation:fadein .5s;
+  animation: fadein 0.5s;
 }
 
 .modal-content {
@@ -75,19 +75,17 @@ body {
   /* border-bottom: 1px solid #eee; */
 }
 
-
 @keyframes fadein {
-	from {
-		opacity:0;
-	}
+  from {
+    opacity: 0;
+  }
 
   to {
-
     opacity: 0.5;
   }
-	to {
-		opacity:1;
-	}
+  to {
+    opacity: 1;
+  }
 }
 
 /* modal survey basic */
@@ -103,13 +101,11 @@ body {
 /* radio */
 
 input[type="radio"] {
-
   accent-color: #333333;
 }
 
 /* select */
 
-select{
-
+select {
   accent-color: #333333;
 }

@@ -3,7 +3,7 @@ import tag from "../assets/images/tag.svg";
 import CreateSurvey from "../components/CreateSurvey";
 import Modal from "../components/Modal";
 
-const Surveys = ({surveys, handleSurveyAddition}) => {
+const Surveys = ({ surveys, handleSurveyAddition }) => {
   const [show, setShow] = useState(false);
 
   return (
@@ -74,7 +74,12 @@ const Surveys = ({surveys, handleSurveyAddition}) => {
           ))}
       </div>
       {/* <CreateSurvey/> */}
-      <Modal show={show} onClose={() => setShow(false)} handleSurveyAddition={handleSurveyAddition} surveys={surveys} />
+      <Modal
+        show={show}
+        onClose={() => setShow(false)}
+        handleSurveyAddition={handleSurveyAddition}
+        surveys={surveys}
+      />
       <div
         onClick={() => setShow(true)}
         className="rounded-full hover:border-2 border-green opacity-100 hover:opacity-100 hover:cursor-pointer   fixed bottom-10 w-14 h-14 right-24 mr-2 bg-none flex justify-center items-center"
