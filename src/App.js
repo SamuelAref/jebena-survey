@@ -4,51 +4,178 @@ import Header from "./components/Header";
 import Surveys from "./pages/Surveys";
 
 function App() {
-  const [surveys, setSurveys] =
-    useState();
-    //   [
+  const [surveys, setSurveys] = useState([
+    {
+      id: 0,
+      surveyTitle: "Survey 1",
+      surveyType: "Personal",
+      surveyDuration: 5,
+      surveyDescription:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci accusantium voluptates animi eum rerum, sunt quibusdam quam! Repellendus dolores impedit nisi mollitia fugit. Nulla nostrum architecto placeat dicta voluptatem at!",
+      questions: [
+        {
+          id: 0,
+          questionText: "What is your name?",
+          questionType: "text",
+        },
 
-    //   {
-    //     id:0,
-    //     surveyTitle:'Survey 1',
-    //     surveyType:'Personal',
-    //     surveyDuration:5,
-    //     surveyDescription:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci accusantium voluptates animi eum rerum, sunt quibusdam quam! Repellendus dolores impedit nisi mollitia fugit. Nulla nostrum architecto placeat dicta voluptatem at!',
-    //     questions: [
+        {
+          id: 1,
+          questionText: "How old are you?",
+          questionType: "number",
+        },
 
-    //       {
-    //         id:0,
-    //         questionText:'What is your name?',
-    //         questionType:'text',
+        {
+          id: 2,
+          questionText: "Mitochondria is the power-house of the cell",
+          questionType: "boolean",
+        },
 
-    //       },
+        {
+          id: 3,
+          questionText: "What is the power-house of the cell?",
+          questionType: "choice",
+          choices: ["choiceOne", "choiceTwo", "choiceThree"],
+        },
+      ],
+    },
+    {
+      id: 1,
+      surveyTitle: "Survey 2",
+      surveyType: "Personal",
+      surveyDuration: 5,
+      surveyDescription:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci accusantium voluptates animi eum rerum, sunt quibusdam quam! Repellendus dolores impedit nisi mollitia fugit. Nulla nostrum architecto placeat dicta voluptatem at!",
+      questions: [
+        {
+          id: 0,
+          questionText: "What is your name?",
+          questionType: "text",
+        },
 
-    //       {
-    //         id:1,
-    //         questionText:'How old are you?',
-    //         questionType:'number',
+        {
+          id: 1,
+          questionText: "How old are you?",
+          questionType: "number",
+        },
 
-    //       },
+        {
+          id: 2,
+          questionText: "Mitochondria is the power-house of the cell",
+          questionType: "boolean",
+        },
 
-    //       {
-    //         id:2,
-    //         questionText:'Mitochondria is the power-house of the cell',
-    //         questionType:'boolean',
+        {
+          id: 3,
+          questionText: "What is the power-house of the cell?",
+          questionType: "choice",
+          choices: ["choiceOne", "choiceTwo", "choiceThree"],
+        },
+      ],
+    },
+    {
+      id: 2,
+      surveyTitle: "Survey 3",
+      surveyType: "Personal",
+      surveyDuration: 5,
+      surveyDescription:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci accusantium voluptates animi eum rerum, sunt quibusdam quam! Repellendus dolores impedit nisi mollitia fugit. Nulla nostrum architecto placeat dicta voluptatem at!",
+      questions: [
+        {
+          id: 0,
+          questionText: "What is your name?",
+          questionType: "text",
+        },
 
-    //       },
+        {
+          id: 1,
+          questionText: "How old are you?",
+          questionType: "number",
+        },
 
-    //       {
-    //         id:3,
-    //         questionText:'What is the power-house of the cell?',
-    //         questionType:'choice',
-    //         choices : ['choiceOne', 'choiceTwo','choiceThree']
+        {
+          id: 2,
+          questionText: "Mitochondria is the power-house of the cell",
+          questionType: "boolean",
+        },
 
-    //       },
+        {
+          id: 3,
+          questionText: "What is the power-house of the cell?",
+          questionType: "choice",
+          choices: ["choiceOne", "choiceTwo", "choiceThree"],
+        },
+      ],
+    },
+    {
+      id: 3,
+      surveyTitle: "Survey 4",
+      surveyType: "Personal",
+      surveyDuration: 5,
+      surveyDescription:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci accusantium voluptates animi eum rerum, sunt quibusdam quam! Repellendus dolores impedit nisi mollitia fugit. Nulla nostrum architecto placeat dicta voluptatem at!",
+      questions: [
+        {
+          id: 0,
+          questionText: "What is your name?",
+          questionType: "text",
+        },
 
-    //     ],
-    //   },
+        {
+          id: 1,
+          questionText: "How old are you?",
+          questionType: "number",
+        },
 
-    // ]
+        {
+          id: 2,
+          questionText: "Mitochondria is the power-house of the cell",
+          questionType: "boolean",
+        },
+
+        {
+          id: 3,
+          questionText: "What is the power-house of the cell?",
+          questionType: "choice",
+          choices: ["choiceOne", "choiceTwo", "choiceThree"],
+        },
+      ],
+    },
+    {
+      id: 4,
+      surveyTitle: "Survey 5",
+      surveyType: "Personal",
+      surveyDuration: 5,
+      surveyDescription:
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci accusantium voluptates animi eum rerum, sunt quibusdam quam! Repellendus dolores impedit nisi mollitia fugit. Nulla nostrum architecto placeat dicta voluptatem at!",
+      questions: [
+        {
+          id: 0,
+          questionText: "What is your name?",
+          questionType: "text",
+        },
+
+        {
+          id: 1,
+          questionText: "How old are you?",
+          questionType: "number",
+        },
+
+        {
+          id: 2,
+          questionText: "Mitochondria is the power-house of the cell",
+          questionType: "boolean",
+        },
+
+        {
+          id: 3,
+          questionText: "What is the power-house of the cell?",
+          questionType: "choice",
+          choices: ["choiceOne", "choiceTwo", "choiceThree"],
+        },
+      ],
+    },
+  ]);
 
   const handleSurveyAddition = (
     id,
@@ -68,7 +195,6 @@ function App() {
           surveyDuration: surveyDuration,
           surveyDescription: surveyDescription,
           questions: questions,
-          // numOfQuestions:numOfQuestions
         },
       ]);
     } else if (!surveys && surveyTitle !== "" && surveyDescription !== "") {
@@ -84,12 +210,22 @@ function App() {
       ]);
     }
   };
+  const handleSurveyDeletion = (id) => {
+    setSurveys(
+      surveys.filter((survey) => {
+        return survey.id !== id;
+      })
+    );
+  };
 
   return (
     <div className="App scroll-smooth">
       <Header />
-      <Surveys surveys={surveys} handleSurveyAddition={handleSurveyAddition} />
-      {/* <CreateSurvey/> */}
+      <Surveys
+        surveys={surveys}
+        handleSurveyAddition={handleSurveyAddition}
+        handleSurveyDeletion={handleSurveyDeletion}
+      />
     </div>
   );
 }

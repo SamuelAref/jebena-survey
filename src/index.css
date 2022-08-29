@@ -109,3 +109,13 @@ input[type="radio"] {
 select {
   accent-color: #333333;
 }
+
+/* button */
+
+button {
+  opacity: 80%;
+}
+
+button:hover {
+  opacity: 100%;
+}
