@@ -1,20 +1,23 @@
 import { useState, useEffect } from "react";
 import exit from "../assets/images/exit.png";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-const CreateSurvey = ({ handleSurveyAddition, surveys, onClose }) => {
-  const [surveyTitle, setSurveyTitle] = useState();
-  const [surveyType, setSurveyType] = useState("none");
-  const [surveyDuration, setSurveyDuration] = useState();
-  const [surveyDescription, setSurveyDescription] = useState("");
-  const [addChoice, setAddChoice] = useState(["choiceOne", "choiceTwo"]);
-  const [questions, setQuestions] = useState([
-    {
-      id: 0,
-      questionText: "",
-      questionType: "",
-      choices: addChoice,
-    },
-  ]);
+const Edit = ({
+  surveysSpecific,
+  surveys,
+  handleSurveyAddition,
+  onClose,
+  handleSurveyEdition,
+}) => {
+  const [surveyTitle, setSurveyTitle] = useState(surveysSpecific.surveyTitle);
+  const [surveyType, setSurveyType] = useState(surveysSpecific.surveyType);
+  const [surveyDuration, setSurveyDuration] = useState(
+    surveysSpecific.surveyDuration
+  );
+  const [surveyDescription, setSurveyDescription] = useState(
+    surveysSpecific.surveyDescription
+  );
+  const [addChoice, setAddChoice] = useState(surveysSpecific.choices);
+  const [questions, setQuestions] = useState(surveysSpecific.questions);
 
   const [quest, updateQuest] = useState(questions);
   useEffect(() => {
@@ -49,8 +52,6 @@ const CreateSurvey = ({ handleSurveyAddition, surveys, onClose }) => {
         choices: addChoice,
       },
     ]);
-
-    console.log(questions.length);
   };
   const handleAddQuestions = (
     id,
@@ -63,10 +64,8 @@ const CreateSurvey = ({ handleSurveyAddition, surveys, onClose }) => {
     let choiceArr = Object.values(choices);
     const newChoice = choiceArr.filter((choice) => Number(choice.name) === id);
 
-    setAddChoice(["choiceOne", "choiceTwo"]);
-
     if (addBtn.target.innerText === "Edit Question") {
-      addBtn.target.innerText = "Add Question";
+      addBtn.target.innerText = "Update Question";
       addBtn.target.previousElementSibling.disabled = false;
       addBtn.target.previousElementSibling.previousElementSibling.disabled = false;
       addChoiceBtn.style.display = "block";
@@ -77,42 +76,28 @@ const CreateSurvey = ({ handleSurveyAddition, surveys, onClose }) => {
         choices[i + 1].disabled = false;
       }
     } else {
-      addChoiceBtn.style.display = "none";
-
-      if (id === 0) {
-        if (questions[id].questionText !== "") {
-          questions[id].questionText = text;
-          questions[id].questionType = type;
-        } else {
-          setQuestions([
-            {
+      setQuestions(
+        questions.map((question) => {
+          if (question.id === id) {
+            return {
+              ...question,
               id: id,
               questionText: text,
               questionType: type,
               choices: newChoice.map((choice) => {
                 return choice.value;
               }),
-            },
-          ]);
-        }
-      } else {
-        questions.splice(id);
-        setQuestions([
-          ...questions,
-          {
-            id: id,
-            questionText: text,
-            questionType: type,
-            choices: newChoice.map((choice) => {
-              return choice.value;
-            }),
-          },
-        ]);
-      }
+            };
+          }
+
+          return question;
+        })
+      );
 
       addBtn.target.innerText = "Edit Question";
       addBtn.target.previousElementSibling.disabled = true;
       addBtn.target.previousElementSibling.previousElementSibling.disabled = true;
+      if (type === "choice") addChoiceBtn.style.display = "none";
 
       for (let i = 0; i < choices.length; i++) {
         choices[i].disabled = true;
@@ -122,6 +107,7 @@ const CreateSurvey = ({ handleSurveyAddition, surveys, onClose }) => {
       }
     }
   };
+
   const handleMultiple = (data, component) => {
     if (data === "choice") component.style.display = "block";
     else component.style.display = "none";
@@ -148,16 +134,21 @@ const CreateSurvey = ({ handleSurveyAddition, surveys, onClose }) => {
   return (
     <div className=" w-full h-full flex flex-row flex-wrap justify-center items-center overflow-y-auto">
       <div className="cards border-brandBrown survey-basics w-72 h-100 m-2 flex flex-col">
-        <form action="#" onSubmit={handleSubmit} className="flex flex-col">
+        <form
+          spellCheck="false"
+          action="#"
+          onSubmit={handleSubmit}
+          className="flex flex-col"
+        >
           <label
-            className="text-xl pl-4 pt-2 font-medium mb-2 text-khakiDark"
+            className="text-xl text-khakiDark pl-4 pt-2 mb-2 font-medium"
             htmlFor="surveyTitle"
           >
             Survey Title
           </label>
           <textarea
             onChange={(e) => setSurveyTitle(e.target.value)}
-            value={surveyTitle}
+            defaultValue={surveyTitle}
             required
             cols="70"
             rows="1"
@@ -167,7 +158,7 @@ const CreateSurvey = ({ handleSurveyAddition, surveys, onClose }) => {
             name="surveyTitle"
           />
           <label
-            className="text-xl pl-4 pt-2 font-medium text-khakiDark mb-2"
+            className="text-xl text-khakiDark pl-4 pt-2 font-medium mb-2"
             htmlFor="surveyType"
           >
             Survey Type
@@ -180,8 +171,9 @@ const CreateSurvey = ({ handleSurveyAddition, surveys, onClose }) => {
                 type="radio"
                 value="Personal"
                 name="surveyType"
+                // checked={surveysSpecific.surveyType === "Personal" ? true : false}
               />
-              <div className="text-sm m-1 text-center font-medium">
+              <div className="text-sm m-1 text-brandBrown text-center font-medium">
                 Personal
               </div>
             </div>
@@ -193,8 +185,9 @@ const CreateSurvey = ({ handleSurveyAddition, surveys, onClose }) => {
                 type="radio"
                 value="Research"
                 name="surveyType"
+                // checked={surveysSpecific.surveyType === "Research" ? true : false}
               />
-              <div className="text-sm m-1 text-center font-medium">
+              <div className="text-sm m-1 text-brandBrown  text-center font-medium">
                 Research
               </div>
             </div>
@@ -206,8 +199,9 @@ const CreateSurvey = ({ handleSurveyAddition, surveys, onClose }) => {
                 type="radio"
                 value="Feedback"
                 name="surveyType"
+                // checked={surveysSpecific.surveyType === "Feedback" ? true : false}
               />
-              <div className="text-sm m-1 text-center font-medium">
+              <div className="text-sm m-1 text-brandBrown  text-center font-medium">
                 Feedback
               </div>
             </div>
@@ -215,7 +209,7 @@ const CreateSurvey = ({ handleSurveyAddition, surveys, onClose }) => {
           <div className=" m-1 flex flex-row justify-start items-center">
             <label
               htmlFor="surveyDuration"
-              className="text-xl mr-2 ml-3 font-medium w-40 text-khakiDark"
+              className="text-xl mr-2 ml-3  font-medium w-40 text-khakiDark"
             >
               Survey Duration
             </label>
@@ -226,11 +220,12 @@ const CreateSurvey = ({ handleSurveyAddition, surveys, onClose }) => {
               max={60}
               min={1}
               type="number"
+              defaultValue={surveysSpecific.surveyDuration}
             />
           </div>
           <div className="flex flex-col justify-start items-start">
             <label
-              className="text-xl pl-3 pt-2 ml-1 mt-2 font-medium text-khakiDark"
+              className="text-xl pl-3 pt-2 text-khakiDark  ml-1 mt-2 font-medium"
               htmlFor="surveyDescription"
             >
               Survey Description
@@ -238,46 +233,36 @@ const CreateSurvey = ({ handleSurveyAddition, surveys, onClose }) => {
             <textarea
               required
               onChange={(e) => setSurveyDescription(e.target.value)}
-              value={surveyDescription}
+              defaultValue={surveyDescription}
               className="focus:outline-none border-2 border-khakiDark m-4 mt-2 resize-none p-1"
               name=""
               id=""
               cols="30"
-              rows="3"
+              rows="4"
             ></textarea>
             <div className="w-64 ml-4 flex justify-end items-center">
               <button
                 onClick={() => {
                   {
-                    surveys &&
-                      handleSurveyAddition(
-                        surveys.length,
-                        surveyTitle,
-                        surveyType,
-                        surveyDuration,
-                        surveyDescription,
-                        questions
-                      );
-                  }
-                  {
-                    !surveys &&
-                      handleSurveyAddition(
-                        0,
-                        surveyTitle,
-                        surveyType,
-                        surveyDuration,
-                        surveyDescription,
-                        questions
-                      );
-                  }
-                  {
                     surveyTitle && surveyDescription && onClose();
+                  }
+                  {
+                    surveyTitle &&
+                      surveyDescription &&
+                      handleSurveyEdition(
+                        surveysSpecific.id,
+                        surveyTitle,
+                        surveyType,
+                        surveyDuration,
+                        surveyDescription,
+                        questions
+                      );
                   }
                 }}
                 type="submit"
-                className="button bg-brandBrown text-khaki font-bold rounded-2xl h-5 w-20 flex justify-center items-center text-center text-sm p-2 mb-2"
+                className="button bg-brandBrown text-khaki font-bold rounded-2xl h-6 w-20 flex justify-center items-center text-center text-md p-2"
               >
-                Submit
+                Update
               </button>
             </div>
           </div>
@@ -315,7 +300,7 @@ const CreateSurvey = ({ handleSurveyAddition, surveys, onClose }) => {
                           >
                             <img src={exit} alt="" />
                           </div>
-                          <div className="font-medium text-brandBrown text-lg pl-1">
+                          <div className="font-medium text-brandBrown text-lg pl-2">
                             Question {questions.indexOf(question) + 1}
                           </div>
                           <div className="flex flex-row justify-evenly items-center">
@@ -325,9 +310,11 @@ const CreateSurvey = ({ handleSurveyAddition, surveys, onClose }) => {
                               id=""
                               cols="70"
                               rows="2"
-                            ></textarea>
+                            >
+                              {question.questionText}
+                            </textarea>
                             <select
-                              onChange={() =>
+                              onChange={(e) =>
                                 handleMultiple(
                                   document.getElementsByClassName(
                                     "questionType"
@@ -340,6 +327,7 @@ const CreateSurvey = ({ handleSurveyAddition, surveys, onClose }) => {
                               className="questionType border-2 border-khakiDark text-md font-medium bg-khakiDark m-2 -mt-6 hover:cursor-pointer"
                               name="questionType"
                               id="questionType"
+                              defaultValue={question.questionType}
                             >
                               <option value="text">Open Question</option>
                               <option value="boolean">True or False</option>
@@ -368,19 +356,16 @@ const CreateSurvey = ({ handleSurveyAddition, surveys, onClose }) => {
                                   )
                                 );
                               }}
-                              className="button bg-brandBrown absolute right-0 bottom-0 text-khaki font-bold rounded-2xl h-5 w-24 flex justify-center items-center text-center text-xs p-2 m-1"
+                              className="button bg-brandBrown absolute right-0 bottom-0 text-khaki font-bold rounded-2xl h-5 w-26 flex justify-center items-center text-center text-xs p-2 m-1"
                             >
-                              Add Question
+                              Update Question
                             </button>
                           </div>
 
-                          {
-                            <div
-                              className="show-Multiple"
-                              style={{ display: "none" }}
-                            >
+                          {question.questionType === "choice" && (
+                            <div className="show-Multiple">
                               <div className="font-bold text-brandBrown text-md pl-1 mb-5">
-                                Add Choices
+                                Update Choices
                               </div>
 
                               <div className="choice-container flex flex-col max-h-48 overflow-auto ">
@@ -403,6 +388,7 @@ const CreateSurvey = ({ handleSurveyAddition, surveys, onClose }) => {
                                           type="text"
                                           className="focus:outline-none border-2 border-khakiDark m-2  p-1 text-xs h-7 w-96"
                                           name={question.id}
+                                          defaultValue={choice}
                                         />
                                         <svg
                                           onClick={() =>
@@ -452,7 +438,7 @@ const CreateSurvey = ({ handleSurveyAddition, surveys, onClose }) => {
                                 </div>
                               </div>
                             </div>
-                          }
+                          )}
 
                           <svg
                             className="w-5 h-5 absolute left-0 bottom-0 fill-black rotate-90"
@@ -498,4 +484,4 @@ const CreateSurvey = ({ handleSurveyAddition, surveys, onClose }) => {
   );
 };
 
-export default CreateSurvey;
+export default Edit;

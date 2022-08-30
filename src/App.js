@@ -1,5 +1,4 @@
 import { useState } from "react";
-import CreateSurvey from "./components/CreateSurvey";
 import Header from "./components/Header";
 import Surveys from "./pages/Surveys";
 
@@ -22,7 +21,7 @@ function App() {
         {
           id: 1,
           questionText: "How old are you?",
-          questionType: "number",
+          questionType: "numbered",
         },
 
         {
@@ -56,7 +55,7 @@ function App() {
         {
           id: 1,
           questionText: "How old are you?",
-          questionType: "number",
+          questionType: "numbered",
         },
 
         {
@@ -90,7 +89,7 @@ function App() {
         {
           id: 1,
           questionText: "How old are you?",
-          questionType: "number",
+          questionType: "numbered",
         },
 
         {
@@ -124,7 +123,7 @@ function App() {
         {
           id: 1,
           questionText: "How old are you?",
-          questionType: "number",
+          questionType: "numbered",
         },
 
         {
@@ -158,7 +157,7 @@ function App() {
         {
           id: 1,
           questionText: "How old are you?",
-          questionType: "number",
+          questionType: "numbered",
         },
 
         {
@@ -218,6 +217,31 @@ function App() {
     );
   };
 
+  const handleSurveyEdition = (
+    id,
+    surveyTitle,
+    surveyType,
+    surveyDuration,
+    surveyDescription,
+    questions
+  ) => {
+    setSurveys(
+      surveys.map((survey) => {
+        if (survey.id === id) {
+          return {
+            ...survey,
+            surveyTitle: surveyTitle,
+            surveyType: surveyType,
+            surveyDuration: surveyDuration,
+            surveyDescription: surveyDescription,
+            questions: questions,
+          };
+        }
+        return survey;
+      })
+    );
+  };
+
   return (
     <div className="App scroll-smooth">
       <Header />
@@ -225,6 +249,7 @@ function App() {
         surveys={surveys}
         handleSurveyAddition={handleSurveyAddition}
         handleSurveyDeletion={handleSurveyDeletion}
+        handleSurveyEdition={handleSurveyEdition}
       />
     </div>
   );

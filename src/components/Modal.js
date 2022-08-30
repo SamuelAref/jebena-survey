@@ -10,7 +10,7 @@ const Modal = ({ show, onClose, handleSurveyAddition, surveys }) => {
             Add Survey
           </div>
         </div>
-        <div className="modal-body w-full h-86">
+        <div className="modal-body w-full h-112">
           <CreateSurvey
             handleSurveyAddition={handleSurveyAddition}
             surveys={surveys}

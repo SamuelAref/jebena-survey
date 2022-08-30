@@ -6,6 +6,7 @@ module.exports = {
       colors: {
         headerBlue: "#001e5d",
         khaki: "#f6f1e7",
+        khakiDark: "#dfc694",
         brandBrown: "#333333",
         textGrey: "#777777",
         red: "#FF0000",
@@ -13,6 +14,7 @@ module.exports = {
       },
 
       spacing: {
+        18: "0.3rem",
         21: "0.5rem",
         82: "20rem",
         84: "22rem",

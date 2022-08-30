@@ -52,7 +52,7 @@ const Preview = ({ surveys }) => {
               {/* text */}
 
               {question.questionType === "text" && (
-                <div className="cards text-card border-khaki border-l-8 border-t-2 question w-136 h-auto my-3 ml-10 relative flex-col">
+                <div className="cards text-card border-khakiDark border-l-8 border-t-2 question w-136 h-auto my-3 ml-10 relative flex-col">
                   <div className="text-xl font-bold text-brandBrown pl-4 pt-2">
                     Question {surveys.questions.indexOf(question) + 1}
                   </div>
@@ -61,7 +61,7 @@ const Preview = ({ surveys }) => {
                     {question.questionText}
                   </p>
                   <textarea
-                    className="question-text focus:outline-none border-2 border-khaki resize-none ml-4 my-2 text-xs"
+                    className="question-text focus:outline-none border-2 border-khakiDark resize-none ml-4 my-2 text-xs"
                     name=""
                     id=""
                     cols="114"
@@ -73,7 +73,7 @@ const Preview = ({ surveys }) => {
               {/* Numbered */}
 
               {question.questionType === "numbered" && (
-                <div className="cards text-card border-khaki border-l-8 border-t-2 question w-136 h-auto my-4 ml-10 relative flex-col">
+                <div className="cards text-card border-khakiDark border-l-8 border-t-2 question w-136 h-auto my-4 ml-10 relative flex-col">
                   <div className="text-xl font-bold text-brandBrown pl-4 pt-2">
                     Question {surveys.questions.indexOf(question) + 1}
                   </div>
@@ -82,7 +82,7 @@ const Preview = ({ surveys }) => {
                       {question.questionText}
                     </p>
                     <input
-                      className="focus:outline-none text-center w-16 border-2 border-khaki mx-4 h-8 mb-2"
+                      className="focus:outline-none text-center w-16 border-2 border-khakiDark mx-4 h-8 mb-2"
                       placeholder="0"
                       type="number"
                     />
@@ -93,7 +93,7 @@ const Preview = ({ surveys }) => {
               {/* boolean */}
 
               {question.questionType === "boolean" && (
-                <div className="cards text-card border-khaki border-l-8 border-t-2 question w-136 h-auto my-4 ml-10 relative flex-col">
+                <div className="cards text-card border-khakiDark border-l-8 border-t-2 question w-136 h-auto my-4 ml-10 relative flex-col">
                   <div className="text-xl font-bold text-brandBrown pl-4 pt-2">
                     Question {surveys.questions.indexOf(question) + 1}
                   </div>
@@ -109,7 +109,7 @@ const Preview = ({ surveys }) => {
                           value="True"
                           name="tOrF"
                         />
-                        <div className="text-sm m-1 text-center font-medium">
+                        <div className="text-sm m-1 text-center  font-medium">
                           True
                         </div>
                       </div>
@@ -132,7 +132,7 @@ const Preview = ({ surveys }) => {
               {/* choice */}
 
               {question.questionType === "choice" && (
-                <div className="cards text-card border-khaki border-l-8 border-t-2 question w-136 my-3 ml-10 flex-col">
+                <div className="cards text-card border-khakiDark border-l-8 border-t-2 question w-136 my-3 ml-10 flex-col">
                   <div className="text-xl font-bold text-brandBrown pl-4 pt-2">
                     Question {surveys.questions.indexOf(question) + 1}
                   </div>
@@ -142,7 +142,7 @@ const Preview = ({ surveys }) => {
                   <div className="flex flex-col m-1 justify-start items-start w-auto mr-4 mb-4">
                     {question.choices &&
                       question.choices.map((choice) => (
-                        <div className="flex flex-row justify-evenly items-center pl-4 pt-2">
+                        <div className="flex flex-row justify-evenly items-center pl-4 pt-2 mb-2">
                           <input
                             className="hover:cursor-pointer"
                             type="radio"

@@ -1,10 +1,14 @@
 import { useState } from "react";
-import tag from "../assets/images/tag.svg";
-import CreateSurvey from "../components/CreateSurvey";
 import Modal from "../components/Modal";
 import ModalPreview from "../components/ModalPreview";
+import ModalEdit from "../components/ModalEdit";
 
-const Surveys = ({ surveys, handleSurveyAddition, handleSurveyDeletion }) => {
+const Surveys = ({
+  surveys,
+  handleSurveyAddition,
+  handleSurveyDeletion,
+  handleSurveyEdition,
+}) => {
   const [show, setShow] = useState(false);
 
   const [previewCreate, setPreviewCreate] = useState("");
@@ -75,6 +79,16 @@ const Surveys = ({ surveys, handleSurveyAddition, handleSurveyDeletion }) => {
                   Preview Survey
                 </button>
                 <button
+                  onClick={(e) => {
+                    setShow(true);
+                    setPreviewCreate("edit");
+                    setPrevId(survey.id);
+                  }}
+                  className="bg-brandBrown text-white rounded-2xl h-5 flex justify-center items-center text-center text-xs p-2"
+                >
+                  Edit Survey
+                </button>
+                <button
                   onClick={(e) => handleSurveyDeletion(survey.id)}
                   className="bg-red text-white rounded-2xl h-5 flex justify-center items-center text-center text-xs p-2"
                 >
@@ -94,11 +108,22 @@ const Surveys = ({ surveys, handleSurveyAddition, handleSurveyDeletion }) => {
         />
       )}
 
+      {previewCreate === "edit" && (
+        <ModalEdit
+          show={show}
+          onClose={() => setShow(false)}
+          surveysSpecific={surveys[prevId]}
+          surveys={surveys}
+          handleSurveyAddition={handleSurveyAddition}
+          handleSurveyEdition={handleSurveyEdition}
+        />
+      )}
+
       {previewCreate === "preview" && (
         <ModalPreview
           show={show}
           onClose={() => setShow(false)}
-          surveys={surveys[prevId]}
+          surveysSpecific={surveys[prevId]}
         />
       )}
       <div
