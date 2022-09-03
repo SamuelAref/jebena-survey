@@ -1,21 +1,50 @@
+//
+
+import downArrow from "../assets/images/downArrow.png";
 import logo from "../assets/logos/logo.png";
+import profile from "../assets/images/profile.jpg";
+
 const Header = () => {
   return (
-    <header>
-      <div className="w-full h-16 bg-headerBlue flex flex-row justify-between items-center">
-        <img src={logo} alt="" className="w-8 h-8 border-2 ml-5" />
-        <div className=" ml-32 w-96 flex flex-row justify-center">
-          {/* add a router link here */}
-          <a
-            href="true"
-            className="w-40 text-center text-3xl text-white font-medium"
-          >
-            Surveys
-          </a>
-        </div>
-        <div className="w-56 "></div>
+    <div className="navbar bg-headerBlue">
+      <div className="logo-container">
+        <img src={logo} alt="" />
       </div>
-    </header>
+
+      <div className="nav-buttons">
+        <div className="nav-button">
+          <h4 className="text-white">Standards</h4>
+          <div className="downIcon">
+            <img src={downArrow} alt="" />
+          </div>
+        </div>
+
+        <div className="nav-button">
+          <h4 className="text-white">Surveys</h4>
+          <div className="downIcon">
+            <img src={downArrow} alt="" />
+          </div>
+        </div>
+
+        <div className="nav-button">
+          <h4 className="text-white">Data</h4>
+          <div className="downIcon">
+            <img src={downArrow} alt="" />
+          </div>
+        </div>
+      </div>
+
+      <div className="user-container mr-5 w-56 h-16 flex justify-evenly items-center flex-row">
+        <div className="profile-pic w-10 h-10 rounded-full flex justify-center items-center ">
+          <img className="rounded-full w-full h-full" src={profile} alt="" />
+        </div>
+        <div className="name-field h-10 w-32">
+          <div className="text-white text-sm">Samuel Arefeaynie</div>
+          <div className="text-white text-xs">jebena.enveritas.org</div>
+        </div>
+        <img className="w-3 h-2" src={downArrow} alt="" />
+      </div>
+    </div>
   );
 };
 
