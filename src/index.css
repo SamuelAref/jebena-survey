@@ -5,8 +5,6 @@
 * {
   transition: all 0.2s ease-in-out;
 
-  /* color :#dfc694 */
-  /* border-color:#dfc694; */
   color: #333333;
 }
 
@@ -23,7 +21,7 @@ body {
 ::-webkit-scrollbar-track {
   border: 1px solid #e7c072;
   border-radius: 10px;
-  background-color: var(--kaki);
+  background-color: #f6f1e7;
 }
 
 ::-webkit-scrollbar {
@@ -33,7 +31,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: white;
+  background-color: #001e5d;
   border-radius: 10px;
 }
 
@@ -90,7 +88,6 @@ body {
 }
 
 .nav-button .downIcon {
-  /* border: 1px solid white; */
   width: 20px;
   height: 20px;
   margin-left: 10px;
@@ -104,12 +101,6 @@ body {
   height: 75%;
   object-fit: contain;
   padding-top: 4px;
-}
-
-.user-container {
-  /* border: 1px solid white; */
-  /* width: 300px;
-  height: 50px; */
 }
 
 /* cards */
@@ -134,7 +125,6 @@ body {
 }
 
 .modal-content {
-  /* width: 500px; */
   background-color: #fff;
   transition: inherit;
 }
@@ -146,12 +136,6 @@ body {
 
 .modal-title {
   margin: 0;
-}
-
-.modal-body {
-  /* padding: 10px; */
-  /* border-top: 1px solid #eee; */
-  /* border-bottom: 1px solid #eee; */
 }
 
 @keyframes fadein {
@@ -170,12 +154,9 @@ body {
 /* modal survey basic */
 
 .input {
-  /* border: 2px solid var(--kaki); */
   outline: none;
   width: 550px;
 }
-
-/* radio */
 
 /* radio */
 
@@ -197,4 +178,30 @@ button {
 
 button:hover {
   opacity: 100%;
+}
+
+#create-survey-button {
+  animation: bounce 5s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  25%,
+  50%,
+  75%,
+  90%,
+  100% {
+    transform: translateY(0);
+  }
+  15%,
+  40% {
+    transform: translateY(-20px);
+  }
+  65%,
+  80% {
+    transform: translateY(-15px);
+  }
+  95% {
+    transform: translateY(-5px);
+  }
 }

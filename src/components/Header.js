@@ -1,10 +1,9 @@
-//
-
 import downArrow from "../assets/images/downArrow.png";
 import logo from "../assets/logos/logo.png";
 import profile from "../assets/images/profile.jpg";
 
 const Header = () => {
+  const headerButtonsTitles = ["Standards", "Surveys", "data"];
   return (
     <div className="navbar bg-headerBlue">
       <div className="logo-container">
@@ -12,26 +11,14 @@ const Header = () => {
       </div>
 
       <div className="nav-buttons">
-        <div className="nav-button">
-          <h4 className="text-white">Standards</h4>
-          <div className="downIcon">
-            <img src={downArrow} alt="" />
+        {headerButtonsTitles.map((title, index) => (
+          <div key={index} className="nav-button">
+            <h4 className="text-white">{title}</h4>
+            <div className="downIcon">
+              <img src={downArrow} alt="" />
+            </div>
           </div>
-        </div>
-
-        <div className="nav-button">
-          <h4 className="text-white">Surveys</h4>
-          <div className="downIcon">
-            <img src={downArrow} alt="" />
-          </div>
-        </div>
-
-        <div className="nav-button">
-          <h4 className="text-white">Data</h4>
-          <div className="downIcon">
-            <img src={downArrow} alt="" />
-          </div>
-        </div>
+        ))}
       </div>
 
       <div className="user-container mr-5 w-56 h-16 flex justify-evenly items-center flex-row">

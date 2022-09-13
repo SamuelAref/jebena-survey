@@ -1,4 +1,4 @@
-import Preview from "../pages/Preview";
+import PreviewSurvey from "../../pages/PreviewSurvey";
 
 const ModalPreview = ({ show, onClose, surveysSpecific }) => {
   if (!show) return null;
@@ -6,7 +6,7 @@ const ModalPreview = ({ show, onClose, surveysSpecific }) => {
     <div className="modal z-10">
       <div className="modal-content cards rounded mt-10   h-auto flex justify-start items-center flex-col">
         <div className="modal-body w-full h-112">
-          <Preview surveys={surveysSpecific} />
+          <PreviewSurvey surveys={surveysSpecific} />
         </div>
         <div className="modal-footer flex w-full h-10 flex-row justify-end items-end">
           <button
